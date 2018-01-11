@@ -9,6 +9,8 @@ You'll need a server with ASP or PHP support (both ASP and PHP files are include
 
 The JavaScript code contains comments so you can understand the code easily.
 
+![HTML5 and JavaScript Webcam PhotoBooth Web App Screenshot](https://vamapaull.com/wp-content/uploads/2017/12/HTML5-Webcam-Photobooth-Web-App.jpg)
+
 See HTML5 Webcam Photobooth Web App project on [my website](https://vamapaull.com/html5-webcam-photobooth-web-app/) and let me know if you have any questions. Enjoy! 
 
 ## Instructions on how to customize the web app:
