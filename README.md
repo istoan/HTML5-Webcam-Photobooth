@@ -32,5 +32,5 @@ Inside the handleButtonSaveClick function you have save.php, that can be changed
 ![Save file location](https://vamapaull.com/work/PhotoBoothHTML/documentation/images/save.jpg)
 You should also make sure that on your server, near the save server-side file, you also have a folder named images with permissions to write on your server.
 
-## I'm a freelancer and you can hire me to work on your project: 
+### I'm a freelancer and you can hire me to work on your project: 
 https://vamapaull.com/contact/
