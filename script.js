@@ -2,21 +2,11 @@ var buttonCapture = document.getElementById("buttonCapture");
 var buttonSave = document.getElementById("buttonSave");
 var savedImages = document.getElementById("savedImages");
 var canvas = document.getElementById("canvas");
-var video = document.getElementById("video")
+var video = document.getElementById("video");
 
 var context;
 var width = 450; //set width of the video and image
-var height = 300;
-
-//this function is used to receive the image from the Flash Player, if Flash is used.
-function imageResult(data, videoWidth, videoHeight){
-	var imageData = "data:image/png;base64,"+data;
-	var image = new Image;
-	image.onload = function(){
-		context.drawImage(this,0,0);
-	};
-	image.src = imageData;
-}
+var height;
 
 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer, Inc/.test(navigator.vendor);
@@ -29,13 +19,13 @@ canvas.width = width;
 
 context = canvas.getContext("2d");
 
-if((isChrome || isSafari) && window.location.protocol == "http:"){
+if((isChrome || isSafari) && window.location.protocol == "http:") {
     savedImages.innerHTML = "<h1>This browser only supports camera streams over https:</h1>";
-}else{
+} else {
     startWebcam();
 }
 
-function startWebcam(){
+function startWebcam() {
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mediaDevices || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
 
     if (navigator.mediaDevices){
@@ -43,12 +33,12 @@ function startWebcam(){
             video.onloadedmetadata = setHeight;
             buttonCapture.disabled = false;
             return video.srcObject = stream;
-        }).catch(function(e){
+        }).catch(function(e) {
             console.log(e.name + ": "+ e.message);
             
             buttonCapture.disabled = true;
             
-            switch(e.name){
+            switch(e.name) {
                 case "NotAllowedError":
                     savedImages.innerHTML = "<h3>You can't use this app because you denied camera access. Refresh the page and allow the camera to be used by this app.</h3>";
                     break;
@@ -60,19 +50,19 @@ function startWebcam(){
                     break;
             }
         });
-    }else{
+    } else {
         savedImages.innerHTML = "<h3>Camera not supported.</h3>";
     }
 
-    function handleVideo(stream){
+    function handleVideo(stream) {
         video.src = window.URL.createObjectURL(stream);
     }
 
-    function videoError(e){
+    function videoError(e) {
         savedImages.innerHTML = "<h3>" + e +"</h3>";
     }
     
-    function setHeight(){
+    function setHeight() {
         var ratio = video.videoWidth / video.videoHeight;
         height = width/ratio;
         canvas.style.height = height + "px";
@@ -82,8 +72,7 @@ function startWebcam(){
     //add event listener and handle the capture button
     buttonCapture.addEventListener("mousedown", handleButtonCaptureClick);
 
-    function handleButtonCaptureClick(){
-        console.log("style: " + canvas.style.display)
+    function handleButtonCaptureClick() {
         if(canvas.style.display == "none" || canvas.style.display == ""){
             canvas.style.display = "block";
             buttonCapture.innerHTML = "Retake";
@@ -93,12 +82,12 @@ function startWebcam(){
 
             buttonSave.innerHTML = "Save";
             buttonSave.disabled = false;
-        }else{
+        } else {
             makeCaptureButton();
         }
     }
     
-    function makeCaptureButton(){
+    function makeCaptureButton() {
         canvas.style.display = "none";
         buttonCapture.innerHTML = "Capture";
         buttonSave.innerHTML = "Save";
@@ -108,13 +97,13 @@ function startWebcam(){
     //add event listener and handle the save button
     buttonSave.addEventListener("mousedown", handleButtonSaveClick);
     
-    function handleButtonSaveClick(){
+    function handleButtonSaveClick() {
         var dataURL = canvas.toDataURL("image/jpg");
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "save.php"); //change this to .php or .asp, depending on your server
-        xhr.onload = function(){
-            if (xhr.readyState == 4 ){
-                if(xhr.status == 200){
+        xhr.onload = function() {
+            if (xhr.readyState == 4 ) {
+                if(xhr.status == 200) {
                     var image = new Image();
                     image.src = "images/" + xhr.responseText;
                     savedImages.insertAdjacentElement('afterbegin', image);

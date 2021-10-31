@@ -21,9 +21,7 @@ The entire application design can be changed with CSS and HTML. Basic knowledge 
 ![Basic CSS](https://vamapaull.com/work/PhotoBoothHTML/documentation/images/basic-css.jpg)
 
 ### Changing the webcam image size
-For that you have the two variables named width and height inside the JavaScript code.
-![Width and Height](https://vamapaull.com/work/PhotoBoothHTML/documentation/images/width-and-height.jpg)
-The height value is only used for the Flash fallback. For the HTML5 webcam app you can change the width of the app and the height will be set based on your webcam video feed aspect ratio.
+You can change the width of the app and the height will be set based on your webcam video feed aspect ratio.
 
 ### Save on server
 For that you have multiple options. You can use a server based on PHP, ASP or a Java.
